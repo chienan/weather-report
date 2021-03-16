@@ -4,46 +4,44 @@
   </div>
 </template>
 
-<style lang="scss">
-// @import "bootstrap";
-// @import "bootstrap/dist/css/bootstrap.min.css";
+<style lang="sass">
+@import "/assets/scss/main.scss"
 
-/* CSS reset */
-body {
-  margin: 0;
-  padding: 0;
-}
-* {
-  box-sizing: border-box;
-  font-family: "Raleway", sans-serif;
-}
+body
+  margin: 0
+  padding: 0
+  background-color: $darkblue
+
+*
+  box-sizing: border-box
+  font-family: "Raleway", sans-serif
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6,
-p {
-  margin: 0px;
-  padding: 0px;
-}
+p
+  margin: 0px
+  padding: 0px
 
 ul,
 ol,
-li {
-  list-style: none;
-  margin: 0px;
-  padding: 0px;
-}
+li
+  list-style: none
+  margin: 0px
+  padding: 0px
+
 a,
 a:hover,
-a:focus {
-  text-decoration: none;
-}
-img {
-  display: block;
-  object-fit: cover;
-}
+a:focus
+  text-decoration: none
+
+img
+  display: block
+  object-fit: cover
+
 .btn,
 button,
 button:focus,
@@ -51,17 +49,16 @@ input:focus,
 textarea:focus,
 select,
 select:focus,
-a:focus {
-  outline: 0px !important;
-}
-button {
-  background-color: transparent;
-  border: 0;
-  cursor: pointer;
-}
-button[disabled] {
-  pointer-events: none;
-}
+a:focus
+  outline: 0px !important
+
+button
+  background-color: transparent
+  border: 0
+  cursor: pointer
+
+button[disabled]
+  pointer-events: none
 
 // #nav {
 //   padding: 30px;

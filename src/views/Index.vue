@@ -4,8 +4,10 @@
       <div class="content-wrapper">
         <div class="nav px-4 py-4">
           Weather Report
-          <button v-if="!lightMode" @click="lightMode = !lightMode">Light mode</button>
-          <button v-else @click="lightMode = !lightMode">Dark mode</button>
+          <i class="fas fa-sun" v-if="!lightMode" @click="lightMode = !lightMode"></i>
+          <i class="fas fa-moon" v-else @click="lightMode = !lightMode"></i>
+          <!-- <button v-if="!lightMode" @click="lightMode = !lightMode">Light mode</button>
+          <button v-else @click="lightMode = !lightMode">Dark mode</button>-->
         </div>
 
         <div class="card-group">
@@ -58,35 +60,13 @@ export default {
   },
   created() {
     this.lightMode = JSON.parse(localStorage.getItem("lightMode"));
-  },
-  methods: {
-    // _addLightTheme() {
-    //   let lightThemeLinkEl = document.createElement("link");
-    //   lightThemeLinkEl.setAttribute("rel", "stylesheet");
-    //   lightThemeLinkEl.setAttribute("href", "/css/lighttheme.css");
-    //   lightThemeLinkEl.setAttribute("id", "light-theme-style");
-    //   let docHead = document.querySelector("head");
-    //   docHead.append(lightThemeLinkEl);
-    // },
-    // _removeLightTheme() {
-    //   let lightThemeLinkEl = document.querySelector("#light-theme-style");
-    //   let parentNode = lightThemeLinkEl.parentNode;
-    //   parentNode.removeChild(lightThemeLinkEl);
-    // },
-    // lightThemeSwitch() {
-    //   let lightThemeLinkEl = document.querySelector("#light-theme-style");
-    //   if (!lightThemeLinkEl) {
-    //     this._addLightTheme();
-    //   } else {
-    //     this._removeLightTheme();
-    //   }
-    // }
   }
 };
 </script>
 
 <style lang="sass" scoped>
 @import "../assets/scss/main.scss"
+@import url('https://use.fontawesome.com/releases/v5.8.1/css/all.css')
 
 .container
   width: 100vw

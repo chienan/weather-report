@@ -4,8 +4,12 @@
       <div class="content-wrapper">
         <div class="nav px-4 py-4">
           Weather Report
-          <i class="fas fa-sun" v-if="!lightMode" @click="lightMode = !lightMode"></i>
-          <i class="fas fa-moon" v-else @click="lightMode = !lightMode"></i>
+          <i
+            class="fas fa-sun switch-mode"
+            v-if="!lightMode"
+            @click="lightMode = !lightMode"
+          ></i>
+          <i class="fas fa-moon switch-mode" v-else @click="lightMode = !lightMode"></i>
           <!-- <button v-if="!lightMode" @click="lightMode = !lightMode">Light mode</button>
           <button v-else @click="lightMode = !lightMode">Dark mode</button>-->
         </div>
@@ -14,29 +18,29 @@
           <div class="main-card">
             <div class="date">Today</div>
             <div class="temperature">16°C</div>
-            <div class="icon">^____^</div>
+            <i class="fas fa-sun icon"></i>
           </div>
 
           <div class="sub-card-group d-flex flex-wrap justify-content-around">
             <div class="sub-card">
               <div class="sub-date">Thursday</div>
               <div class="sub-temperature">25°C</div>
-              <div class="sub-icon">@......@</div>
+              <i class="fas fa-cloud sub-icon"></i>
             </div>
             <div class="sub-card">
               <div class="sub-date">Thursday</div>
               <div class="sub-temperature">25°C</div>
-              <div class="sub-icon">@......@</div>
+              <i class="fas fa-cloud-showers-heavy sub-icon"></i>
             </div>
             <div class="sub-card">
               <div class="sub-date">Thursday</div>
               <div class="sub-temperature">25°C</div>
-              <div class="sub-icon">@......@</div>
+              <i class="far fa-snowflake sub-icon"></i>
             </div>
             <div class="sub-card">
               <div class="sub-date">Thursday</div>
               <div class="sub-temperature">25°C</div>
-              <div class="sub-icon">@......@</div>
+              <i class="fas fa-sun sub-icon"></i>
             </div>
           </div>
         </div>
@@ -80,6 +84,8 @@ export default {
       width: 100%
       font-size: 2rem
       color: $middleblue
+      .switch-mode:hover
+        cursor: pointer
 
 .card-group
   min-height: 450px
@@ -96,7 +102,9 @@ export default {
     @extend %main-card-style
 
     .temperature
-      font-size: 3rem
+      font-size: 5rem
+    .icon
+      font-size: 5rem
 
   .sub-card-group
     width: 65vw
@@ -108,6 +116,8 @@ export default {
       @extend %card-style
       .sub-temperature
         font-size: 2rem
+      .sub-icon
+        font-size: 3rem
 
 .theme-light
   .container

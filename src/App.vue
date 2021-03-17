@@ -59,7 +59,4 @@ button
 
 button[disabled]
   pointer-events: none
-
-i:hover
-  cursor: pointer
 </style>

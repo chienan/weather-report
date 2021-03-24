@@ -11,7 +11,6 @@
 body
   margin: 0
   padding: 0
-
 *
   box-sizing: border-box
   font-family: 'Ubuntu', sans-serif
@@ -59,4 +58,20 @@ button
 
 button[disabled]
   pointer-events: none
+
+input:focus
+  outline: 0px !important
+
+input
+  padding: 0
+  border-radius: 5px
+
+input:required
+  box-shadow: none
+
+input:invalid
+  box-shadow: none
+
+input:hover
+  cursor: pointer
 </style>

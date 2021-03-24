@@ -3,13 +3,30 @@
     <div class="container d-flex justify-content-center">
       <div class="content-wrapper">
         <div class="nav px-4 py-4">
-          Weather Report
-          <i
-            class="fas fa-sun switch-mode"
-            v-if="!lightMode"
-            @click="lightMode = !lightMode"
-          ></i>
-          <i class="fas fa-moon switch-mode" v-else @click="lightMode = !lightMode"></i>
+          <div class="nav-title">
+            Weather Report
+            <i
+              class="fas fa-sun switch-mode"
+              v-if="!lightMode"
+              @click="lightMode = !lightMode"
+            ></i>
+            <i class="fas fa-moon switch-mode" v-else @click="lightMode = !lightMode"></i>
+          </div>
+
+          <div class="nav-search">
+            <form>
+              <div class="search-section py-4">
+                <label for="search" class="search"></label>
+                <input
+                  type="place"
+                  class="form-control search-input"
+                  id="search"
+                  placeholder="search for a place"
+                />
+                <button type="submit" class="btn btn-primary mx-4">search</button>
+              </div>
+            </form>
+          </div>
           <!-- <button v-if="!lightMode" @click="lightMode = !lightMode">Light mode</button>
           <button v-else @click="lightMode = !lightMode">Dark mode</button>-->
         </div>
@@ -80,12 +97,21 @@ export default {
   .content-wrapper
     width: 85%
     .nav
-      height: 15%
       width: 100%
+      display: flex
+      flex-direction: column
       font-size: 2rem
       color: $middleblue
       .switch-mode:hover
         cursor: pointer
+
+      .search-section
+        display: flex
+        .search-input
+          width: 50%
+          background: transparent
+          border: 1px solid $lightblue
+          color: $lightblue
 
 .card-group
   min-height: 450px
@@ -108,7 +134,7 @@ export default {
 
   .sub-card-group
     width: 65vw
-    height: 10vw
+    // height: 10vw
 
     .sub-card
       min-height: 220px
@@ -120,6 +146,7 @@ export default {
         font-size: 3rem
 
 .theme-light
+
   .container
     background-color: $backgroundlight
     color: $darkblue
@@ -127,6 +154,9 @@ export default {
     .main-card
       border: 2px solid $darkblue
       color: $darkblue
+
+    .sub-card-group
+      background: $backgroundlight
 
     .sub-card
       border: 2px solid $darkblue
@@ -139,7 +169,6 @@ export default {
 
   .container
     width: 100vw
-    height: 100vw
 
   .card-group
     display: flex

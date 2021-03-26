@@ -83,7 +83,7 @@
 export default {
   data: () => {
     return {
-      api_key: "26bba13159210bc40ade4aad0b823af3",
+      api_key: process.env.VUE_APP_API_KEY,
       BASE_URL: "http://api.openweathermap.org/data/2.5/",
       query: "HsinChu",
       weather: {},
@@ -112,6 +112,9 @@ export default {
   created() {
     this.lightMode = JSON.parse(localStorage.getItem("lightMode"));
     this.fetchWeather();
+  },
+  filters: {
+    iconFilter() {}
   }
 };
 </script>

@@ -42,33 +42,35 @@
           <div class="main-card">
             <div class="date">{{weather.list[0].dt_txt}}</div>
             <div class="temperature">{{Math.round(weather.list[0].main.temp)}}°C</div>
-            <i class="fas fa-sun icon"></i>
-            <div class="weather">{{weather.list[0].weather[0].main}}</div>
+            <div class="icon-wrapper">
+              <i :class="getIcon()"></i>
+            </div>
+            <div class="weather" id="weather">{{weather.list[0].weather[0].main}}</div>
           </div>
 
           <div class="sub-card-group d-flex flex-wrap justify-content-around">
             <div class="sub-card">
               <div class="sub-date">{{weather.list[1].dt_txt}}</div>
               <div class="sub-temperature">{{Math.round(weather.list[1].main.temp)}}°C</div>
-              <i class="fas fa-cloud sub-icon"></i>
+              <i :class="getIcon()"></i>
               <div class="weather">{{weather.list[1].weather[0].main}}</div>
             </div>
             <div class="sub-card">
               <div class="sub-date">{{weather.list[2].dt_txt}}</div>
               <div class="sub-temperature">{{Math.round(weather.list[2].main.temp)}}°C</div>
-              <i class="fas fa-cloud-showers-heavy sub-icon"></i>
+              <i :class="getIcon()"></i>
               <div class="weather">{{weather.list[2].weather[0].main}}</div>
             </div>
             <div class="sub-card">
               <div class="sub-date">{{weather.list[3].dt_txt}}</div>
               <div class="sub-temperature">{{Math.round(weather.list[3].main.temp)}}°C</div>
-              <i class="far fa-snowflake sub-icon"></i>
+              <i :class="getIcon()"></i>
               <div class="weather">{{weather.list[3].weather[0].main}}</div>
             </div>
             <div class="sub-card">
               <div class="sub-date">{{weather.list[4].dt_txt}}</div>
               <div class="sub-temperature">{{Math.round(weather.list[4].main.temp)}}°C</div>
-              <i class="fas fa-sun sub-icon"></i>
+              <i :class="getIcon()"></i>
               <div class="weather">{{weather.list[4].weather[0].main}}</div>
             </div>
           </div>
@@ -98,10 +100,23 @@ export default {
         `${this.BASE_URL}forecast?q=${this.query}&units=metric&appid=${this.api_key}`
       );
       this.weather = await data.json();
+      this.filterIcon();
     },
     locationSubmit() {
       this.query = this.location;
       this.fetchWeather();
+    },
+    getIcon() {
+      const weatherWord = this.weather.list[0].weather[0].main;
+      if (weatherWord === "Clear") {
+        return "fas fa-sun sub-icon";
+      } else if (weatherWord === "Clouds") {
+        return "fas fa-cloud sub-icon";
+      } else if (weatherWord === "Rain") {
+        return "fas fa-cloud-showers-heavy sub-icon";
+      } else {
+        return "far fa-snowflake sub-icon";
+      }
     }
   },
   watch: {
@@ -112,9 +127,6 @@ export default {
   created() {
     this.lightMode = JSON.parse(localStorage.getItem("lightMode"));
     this.fetchWeather();
-  },
-  filters: {
-    iconFilter() {}
   }
 };
 </script>

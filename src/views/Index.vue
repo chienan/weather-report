@@ -48,30 +48,16 @@
             <div class="weather" id="weather">{{weather.list[0].weather[0].main}}</div>
           </div>
 
-          <div class="sub-card-group d-flex flex-wrap justify-content-around">
+          <div
+            class="sub-card-group d-flex flex-wrap justify-content-around"
+            v-for="(li, index) in filteredDate"
+            :key="index"
+          >
             <div class="sub-card">
-              <div class="sub-date">{{weather.list[1].dt_txt}}</div>
-              <div class="sub-temperature">{{Math.round(weather.list[1].main.temp)}}°C</div>
-              <i :class="getIcon()"></i>
-              <div class="weather">{{weather.list[1].weather[0].main}}</div>
-            </div>
-            <div class="sub-card">
-              <div class="sub-date">{{weather.list[2].dt_txt}}</div>
-              <div class="sub-temperature">{{Math.round(weather.list[2].main.temp)}}°C</div>
-              <i :class="getIcon()"></i>
-              <div class="weather">{{weather.list[2].weather[0].main}}</div>
-            </div>
-            <div class="sub-card">
-              <div class="sub-date">{{weather.list[3].dt_txt}}</div>
-              <div class="sub-temperature">{{Math.round(weather.list[3].main.temp)}}°C</div>
-              <i :class="getIcon()"></i>
-              <div class="weather">{{weather.list[3].weather[0].main}}</div>
-            </div>
-            <div class="sub-card">
-              <div class="sub-date">{{weather.list[4].dt_txt}}</div>
-              <div class="sub-temperature">{{Math.round(weather.list[4].main.temp)}}°C</div>
-              <i :class="getIcon()"></i>
-              <div class="weather">{{weather.list[4].weather[0].main}}</div>
+              <div class="sub-date">{{li.dt_txt}}</div>
+              <div class="sub-temperature">{{Math.round(li.main.temp)}}°C</div>
+              <!-- <i :class="getIcon()"></i> -->
+              <div class="weather">{{li.weather[0].main}}</div>
             </div>
           </div>
         </div>
@@ -88,7 +74,10 @@ export default {
       api_key: process.env.VUE_APP_API_KEY,
       BASE_URL: "http://api.openweathermap.org/data/2.5/",
       query: "HsinChu",
-      weather: {},
+      weather: {
+        city: {},
+        list: []
+      },
       date: "",
       location: "",
       lightMode: false
@@ -100,7 +89,7 @@ export default {
         `${this.BASE_URL}forecast?q=${this.query}&units=metric&appid=${this.api_key}`
       );
       this.weather = await data.json();
-      this.filterIcon();
+      this.getIcon();
     },
     locationSubmit() {
       this.query = this.location;
@@ -117,6 +106,11 @@ export default {
       } else {
         return "far fa-snowflake sub-icon";
       }
+    }
+  },
+  computed: {
+    filteredDate: function() {
+      return this.weather.list.slice(1, 5);
     }
   },
   watch: {

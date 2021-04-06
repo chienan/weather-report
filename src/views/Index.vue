@@ -1,16 +1,16 @@
 <template>
-  <div id="wrapper" :class="{ 'theme-light': lightMode }">
+  <div id="wrapper">
     <div class="container d-flex justify-content-center">
       <div class="content-wrapper">
         <div class="nav px-4 py-4">
           <div class="nav-title">
             Weather Report
-            <i
+            <!-- <i
               class="fas fa-sun switch-mode"
               v-if="!lightMode"
               @click="lightMode = !lightMode"
-            ></i>
-            <i class="fas fa-moon switch-mode" v-else @click="lightMode = !lightMode"></i>
+            ></i>-->
+            <!-- <i class="fas fa-moon switch-mode" v-else @click="lightMode = !lightMode"></i> -->
           </div>
 
           <div class="nav-search">
@@ -81,7 +81,7 @@ export default {
       },
       date: "",
       location: "",
-      lightMode: false,
+      // lightMode: false,
       filteredDateData: [],
       filteredIconDate: []
     };
@@ -94,7 +94,6 @@ export default {
       this.weather = await data.json();
       this.filteredDate();
       this.getIcon();
-      // this.filteredDateData = this.filteredIconDate;
     },
     filteredDate() {
       this.filteredDateData = this.weather.list.slice(1, 5);
@@ -102,20 +101,25 @@ export default {
     },
     filteredIcon() {
       const subWeather = this.filteredIconDate.shift();
+      if (subWeather !== undefined) {
+        // const subWeather = this.filteredIconDate.slice(0, index);
 
-      console.log("get filtered icon");
-      console.log(subWeather);
+        console.log("get filtered icon");
+        console.log(subWeather);
 
-      //  const subWeatherWord = this.filteredDateData[i].weather[0].main;
-      const subWeatherWord = subWeather.weather[0].main;
-      if (subWeatherWord === "Clear") {
-        return "fas fa-sun sub-icon";
-      } else if (subWeatherWord === "Clouds") {
-        return "fas fa-cloud sub-icon";
-      } else if (subWeatherWord === "Rain") {
-        return "fas fa-cloud-showers-heavy sub-icon";
-      } else {
-        return "far fa-snowflake sub-icon";
+        //  const subWeatherWord = this.filteredDateData[i].weather[0].main;
+        const subWeatherWord = subWeather.weather[0].main;
+        console.log(subWeatherWord);
+
+        if (subWeatherWord === "Clear") {
+          return "fas fa-sun sub-icon";
+        } else if (subWeatherWord === "Clouds") {
+          return "fas fa-cloud sub-icon";
+        } else if (subWeatherWord === "Rain") {
+          return "fas fa-cloud-showers-heavy sub-icon";
+        } else {
+          return "far fa-snowflake sub-icon";
+        }
       }
     },
 
@@ -136,33 +140,14 @@ export default {
       }
     }
   },
-  computed: {
-    //  filteredDate: function() {
-    //    return this.weather.list.slice(1, 5);
-    //  }
-  },
-  watch: {
-    lightMode: function() {
-      localStorage.setItem("lightMode", JSON.stringify(this.lightMode));
-    }
-  },
+  // watch: {
+  //   lightMode: function() {
+  //     localStorage.setItem("lightMode", JSON.stringify(this.lightMode));
+  //   }
+  // },
   created() {
     this.lightMode = JSON.parse(localStorage.getItem("lightMode"));
     this.fetchWeather();
-  },
-  filters: {
-    getSubIcon() {
-      const subWeatherWord = this.weather[0].main;
-      if (subWeatherWord === "Clear") {
-        return "fas fa-sun sub-icon";
-      } else if (subWeatherWord === "Clouds") {
-        return "fas fa-cloud sub-icon";
-      } else if (subWeatherWord === "Rain") {
-        return "fas fa-cloud-showers-heavy sub-icon";
-      } else {
-        return "far fa-snowflake sub-icon";
-      }
-    }
   }
 };
 </script>

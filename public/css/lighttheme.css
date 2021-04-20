@@ -1,7 +1,11 @@
 * {
-   background-color: #bbcfe2;
+   /* background-color: #bbcfe2; */
+   background-color: white;
 }
 
+#wrapper {
+   background-color: #bbcfe2;
+}
 
 /* 
 .main-card {

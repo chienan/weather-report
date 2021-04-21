@@ -1,63 +1,68 @@
 <template>
-  <div id="wrapper" :class="{ 'theme-light': lightMode }">
-    <div class="main-content">
-      <div class="container d-flex justify-content-center">
-        <div class="content-wrapper">
-          <div class="nav px-4 py-4">
-            <div class="nav-title">
-              Weather Report
-              <!--onOffModel-->
-              <div class="swith-bar">
-                <onoff-toggle v-model="checked" />
-                <onoff-toggle v-model="checked" onColor="#008F13" :shadow="false" />
-              </div>
+<div id="wrapper" :class="{ 'theme-light': lightMode }">
+  <!--http meta tag-->
+  <head>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  </head>
 
-              <!--original icon-->
-              <i class="fas fa-sun switch-mode" v-if="!lightMode" @click="lightMode = !lightMode"></i>
-              <i class="fas fa-moon switch-mode" v-else @click="lightMode = !lightMode"></i>
+  <div class="main-content">
+    <div class="container d-flex justify-content-center">
+      <div class="content-wrapper">
+        <div class="nav px-4 py-4">
+          <div class="nav-title">
+            Weather Report
+            <!--onOffModel-->
+            <div class="swith-bar">
+              <onoff-toggle v-model="checked" />
+              <onoff-toggle v-model="checked" onColor="#008F13" :shadow="false" />
             </div>
 
-            <div class="nav-search">
-              <form>
-                <div class="search-section py-4">
-                  <label for="search" class="search"></label>
-                  <input
-                    type="place"
-                    class="form-control search-input"
-                    id="search"
-                    placeholder="search for a place"
-                    v-model="location"
-                  />
-                  <button
-                    type="submit"
-                    class="btn btn-primary mx-4"
-                    @click.stop.prevent="locationSubmit"
-                  >search</button>
-                </div>
-              </form>
-            </div>
-
-            <!-- <button v-if="!lightMode" @click="lightMode = !lightMode">Light mode</button>
-            <button v-else @click="lightMode = !lightMode">Dark mode</button>-->
+            <!--original icon-->
+            <i class="fas fa-sun switch-mode" v-if="!lightMode" @click="lightMode = !lightMode"></i>
+            <i class="fas fa-moon switch-mode" v-else @click="lightMode = !lightMode"></i>
           </div>
 
-          <div class="card-group">
-            <div class="main-card">
-              <div class="location-section">{{weather.name}}</div>
-
-              <div class="date">{{currentDate}}</div>
-              <div class="temperature">{{Math.round(weather.main.temp)}}°C</div>
-              <div class="icon-wrapper">
-                <i :class="getIcon()"></i>
+          <div class="nav-search">
+            <form>
+              <div class="search-section py-4">
+                <label for="search" class="search"></label>
+                <input
+                  type="place"
+                  class="form-control search-input"
+                  id="search"
+                  placeholder="search for a place"
+                  v-model="location"
+                />
+                <button
+                  type="submit"
+                  class="btn btn-primary mx-4"
+                  @click.stop.prevent="locationSubmit"
+                >search</button>
               </div>
-              <div class="weather" id="weather">{{weather.weather[0].main}}</div>
+            </form>
+          </div>
+
+          <!-- <button v-if="!lightMode" @click="lightMode = !lightMode">Light mode</button>
+          <button v-else @click="lightMode = !lightMode">Dark mode</button>-->
+        </div>
+
+        <div class="card-group">
+          <div class="main-card">
+            <div class="location-section">{{weather.name}}</div>
+
+            <div class="date">{{currentDate}}</div>
+            <div class="temperature">{{Math.round(weather.main.temp)}}°C</div>
+            <div class="icon-wrapper">
+              <i :class="getIcon()"></i>
             </div>
+            <div class="weather" id="weather">{{weather.weather[0].main}}</div>
           </div>
         </div>
-        <!-- <link rel="stylesheet" href="<%= BASE_URL %>css/lighttheme.css" /> -->
       </div>
+      <!-- <link rel="stylesheet" href="<%= BASE_URL %>css/lighttheme.css" /> -->
     </div>
   </div>
+</div>
 </template>
 
 <script>

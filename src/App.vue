@@ -8,6 +8,7 @@
 @import "/assets/scss/main.scss"
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;1,400&display=swap')
 
+html,
 body
   margin: 0
   padding: 0

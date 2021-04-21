@@ -6,11 +6,14 @@
           <div class="nav px-4 py-4">
             <div class="nav-title">
               Weather Report
-              <i
-                class="fas fa-sun switch-mode"
-                v-if="!lightMode"
-                @click="lightMode = !lightMode"
-              ></i>
+              <!--onOffModel-->
+              <div class="swith-bar">
+                <onoff-toggle v-model="checked" />
+                <onoff-toggle v-model="checked" onColor="#008F13" :shadow="false" />
+              </div>
+
+              <!--original icon-->
+              <i class="fas fa-sun switch-mode" v-if="!lightMode" @click="lightMode = !lightMode"></i>
               <i class="fas fa-moon switch-mode" v-else @click="lightMode = !lightMode"></i>
             </div>
 
@@ -59,8 +62,12 @@
 
 <script>
 import moment from "moment";
+import OnoffToggle from "vue-onoff-toggle";
 
 export default {
+  components: {
+    OnoffToggle
+  },
   data: () => {
     return {
       api_key: process.env.VUE_APP_API_KEY,
@@ -69,7 +76,8 @@ export default {
       weather: {},
       date: "",
       location: "",
-      lightMode: false
+      lightMode: false,
+      checked: false
     };
   },
   methods: {
